@@ -1,12 +1,9 @@
 import {
-  Badge,
   Box,
   Button,
   Center,
   Collapse,
-  Divider,
   Flex,
-  Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -18,10 +15,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  BeeswapNormalText,
-  BeeswapSmallText,
-} from "../../../core/Beeswap_components/Text";
+import { BeeswapSmallText } from "../../../core/Beeswap_components/Text";
 import { BeeswapCollapseExProps } from "../../../core/interfaces/Beeswap_interfaces";
 import { BeeswapSvg } from "../../connect_wallet/UI/connect_wallet_page";
 
@@ -72,7 +66,6 @@ export const SwapPage = () => {
 
 const CollapseEx = (beeswapCollapseExProps: BeeswapCollapseExProps) => {
   const { isOpen, onToggle } = useDisclosure();
-  
 
   return (
     <>
@@ -90,7 +83,7 @@ const CollapseEx = (beeswapCollapseExProps: BeeswapCollapseExProps) => {
         >
           {beeswapCollapseExProps.text}
 
-          <Button color="teal" marginLeft="40" >
+          <Button color="teal" marginLeft="40">
             Confirm swap
           </Button>
         </Box>
