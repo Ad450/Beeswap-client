@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+import { getProvider } from "../../../core/provider";
 // get provider
 // provider can be metamask, infura, alchemy etc
 
@@ -6,17 +7,6 @@ interface AccountChangedProps {
     accounts: Array<string>;
 }
 
-const getProvider = (): any => {
-    let provider;
-    if (
-        (window as any).ethereum !== null ||
-        (window as any).ethereum !== undefined
-    ) {
-        provider = new ethers.providers.Web3Provider((window as any).ethereum);
-    }
-
-    return provider;
-};
 
 export const connectUserWallet = async () => {
     let accounts: Array<string>;
@@ -33,7 +23,7 @@ export const connectUserWallet = async () => {
     console.log(accounts);
 };
 
-const onAccountChanged = async () => {
+export const onAccountChanged = async () => {
     try {
         await getProvider().on("accountsChanged", handleAccountChanged);
     } catch (error) {
