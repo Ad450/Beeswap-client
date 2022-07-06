@@ -16,6 +16,7 @@ export interface BeeswapSvgProps {
 
 export interface BeeswapCollapseExProps {
     text: string;
+    activateSwap: Function
 }
 
 export interface BeeswapMiddleComponentProps {

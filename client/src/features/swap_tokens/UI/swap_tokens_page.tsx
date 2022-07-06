@@ -1,12 +1,9 @@
 import {
-  Badge,
   Box,
   Button,
   Center,
   Collapse,
-  Divider,
   Flex,
-  Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -18,14 +15,33 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import * as React from "react";
-import {
-  BeeswapNormalText,
-  BeeswapSmallText,
-} from "../../../core/Beeswap_components/Text";
+import { BeeswapSmallText } from "../../../core/Beeswap_components/Text";
 import { BeeswapCollapseExProps } from "../../../core/interfaces/Beeswap_interfaces";
 import { BeeswapSvg } from "../../connect_wallet/UI/connect_wallet_page";
+import { swapETHForTokens } from "../data/swap_token";
 
 export const SwapPage = () => {
+  // test variables for swap
+
+  const uniswapV2Router: string = "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D";
+  const testAccount = "0xe57A9202878B529E6D35602faB66a5a0B5143f38";
+  const DAI = "0xc7AD46e0b8a400Bb3C915120d284AafbA8fc4735";
+  const WETH = "0xc778417E063141139Fce010982780140Aa0cD5Ab";
+
+  const testSwap = async () => {
+    try {
+      await swapETHForTokens({
+        contractAddress: uniswapV2Router,
+        path: [WETH, DAI],
+        recipient: testAccount,
+        from: testAccount,
+        value: 3000000000,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Center h="40%">
       <Stack direction="column">
@@ -64,7 +80,7 @@ export const SwapPage = () => {
             </Box>
           </Flex>
         </Box>
-        <CollapseEx text="Confirm action"></CollapseEx>
+        <CollapseEx text="Confirm action" activateSwap={testSwap}></CollapseEx>
       </Stack>
     </Center>
   );
@@ -72,7 +88,6 @@ export const SwapPage = () => {
 
 const CollapseEx = (beeswapCollapseExProps: BeeswapCollapseExProps) => {
   const { isOpen, onToggle } = useDisclosure();
-  
 
   return (
     <>
@@ -90,7 +105,11 @@ const CollapseEx = (beeswapCollapseExProps: BeeswapCollapseExProps) => {
         >
           {beeswapCollapseExProps.text}
 
-          <Button color="teal" marginLeft="40" >
+          <Button
+            color="teal"
+            marginLeft="40"
+            onClick={() => beeswapCollapseExProps.activateSwap()}
+          >
             Confirm swap
           </Button>
         </Box>

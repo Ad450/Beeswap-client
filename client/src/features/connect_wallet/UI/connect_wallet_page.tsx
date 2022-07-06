@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Flex,
-  Spacer,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Button, Center, Flex, Spacer, Stack } from "@chakra-ui/react";
 import * as React from "react";
 import { useState } from "react";
 import {
@@ -20,13 +12,21 @@ import {
   BeeswapSvgProps,
 } from "../../../core/interfaces/Beeswap_interfaces";
 import { SwapPage } from "../../swap_tokens/UI/swap_tokens_page";
+import { connectUserWallet } from "../data/wallet_data";
 
 export const ConnectWallet = () => {
   // set to false for developing swap page
   const [isConnectWallet, setConnectWallet] = useState(false);
 
-  const onConnectWalletClicked = () => {
-    setConnectWallet(!isConnectWallet);
+  const onConnectWalletClicked = async () => {
+    // setConnectWallet(!isConnectWallet);s
+    try {
+      await connectUserWallet();
+      setConnectWallet(!isConnectWallet);
+    } catch (error) {
+      // will have a proper logger
+      console.log(error);
+    }
   };
 
   return (
@@ -47,7 +47,7 @@ export const ConnectWallet = () => {
         <SwapPage></SwapPage>
       ) : (
         <MiddleComponent
-          onConnectWalletClicked={() => setConnectWallet(!isConnectWallet)}
+          onConnectWalletClicked={() => onConnectWalletClicked()}
         ></MiddleComponent>
       )}
     </Box>
@@ -64,7 +64,7 @@ const HeaderComponent = (
       </Box>
       <Spacer />
       <Box>
-        {beeswapHeaderComponentProps.isConnectWallet ?(
+        {beeswapHeaderComponentProps.isConnectWallet ? (
           <Button
             colorScheme="teal"
             variant="outline"
@@ -74,7 +74,7 @@ const HeaderComponent = (
           </Button>
         ) : (
           <BeeswapSmallText text="stay in touch"></BeeswapSmallText>
-        ) }
+        )}
       </Box>
     </Flex>
   );
