@@ -19,7 +19,7 @@ export const ConnectWallet = () => {
   const [isConnectWallet, setConnectWallet] = useState(false);
 
   const onConnectWalletClicked = async () => {
-    // setConnectWallet(!isConnectWallet);
+    // setConnectWallet(!isConnectWallet);s
     try {
       await connectUserWallet();
       setConnectWallet(!isConnectWallet);
