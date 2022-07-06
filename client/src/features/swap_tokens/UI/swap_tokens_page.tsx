@@ -35,7 +35,7 @@ export const SwapPage = () => {
         path: [WETH, DAI],
         recipient: testAccount,
         from: testAccount,
-        value: 300000000000000,
+        value: 3000000000,
       });
     } catch (error) {
       console.log(error);
