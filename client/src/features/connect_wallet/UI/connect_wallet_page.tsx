@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Center,
-  Container,
   Flex,
   Spacer,
   Stack,
@@ -23,7 +22,7 @@ import { SwapPage } from "../../swap_tokens/UI/swap_tokens_page";
 
 export const ConnectWallet = () => {
   // set to false for developing swap page
-  const [isConnectWallet, setConnectWallet] = useState(false);
+  const [isConnectWallet, setConnectWallet] = useState(true);
 
   const onConnectWalletClicked = () => {
     setConnectWallet(!isConnectWallet);
@@ -64,9 +63,9 @@ const HeaderComponent = (
       </Box>
       <Spacer />
       <Box>
-        {beeswapHeaderComponentProps.isConnectWallet ?(
+        {beeswapHeaderComponentProps.isConnectWallet? (
           <Button
-            colorScheme="teal"
+            colorScheme="pink"
             variant="outline"
             onClick={() => beeswapHeaderComponentProps.isConnectWalletChanged()}
           >
@@ -91,7 +90,7 @@ const MiddleComponent = (
           <BeeswapNormalText text="Connect wallet to continue using Beeswap"></BeeswapNormalText>
         </Box>
         <Button
-          colorScheme="teal"
+          colorScheme="pink"
           variant="outline"
           onClick={() => beeswapMiddleComponentProps.onConnectWalletClicked()}
         >

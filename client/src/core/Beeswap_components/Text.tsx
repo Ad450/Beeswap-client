@@ -6,7 +6,7 @@ import { BeeswapNormalTextProps, BeeswapSmallTextProps, BeeswapTextProps } from 
 
  const BeeswapText = (beeswapTextProps: BeeswapTextProps)=>{
     return (
-        <Heading color='gray.300'>{beeswapTextProps.text}</Heading>
+        <Heading color='pink'>{beeswapTextProps.text}</Heading>
     )
 }
 
@@ -18,7 +18,7 @@ const BeeswapNormalText = (beeswapNormalTextProps: BeeswapNormalTextProps)=>{
 
 const BeeswapSmallText = (beeswapSmallTextProps: BeeswapSmallTextProps) =>{
     return (
-        <Text fontSize="lg"> {beeswapSmallTextProps.text}</Text>
+        <Text color="pink" fontSize="lg"> {beeswapSmallTextProps.text} </Text>
     )
 }
 
